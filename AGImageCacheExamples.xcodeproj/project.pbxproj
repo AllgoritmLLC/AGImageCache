@@ -15,6 +15,7 @@
 		BA91FC211A88EA57009AD890 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA91FC1F1A88EA57009AD890 /* LaunchScreen.xib */; };
 		BA91FC2D1A88EA57009AD890 /* AGImageCacheExamplesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BA91FC2C1A88EA57009AD890 /* AGImageCacheExamplesTests.m */; };
 		BA91FC421A88F1BB009AD890 /* AGImageCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BA91FC3A1A88F1BB009AD890 /* AGImageCacheManager.m */; };
+		BA91FC521A88F487009AD890 /* AGURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = BA91FC4E1A88F487009AD890 /* AGURLSession.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,9 @@
 		BA91FC391A88F1BB009AD890 /* AGImageCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGImageCacheManager.h; sourceTree = "<group>"; };
 		BA91FC3A1A88F1BB009AD890 /* AGImageCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGImageCacheManager.m; sourceTree = "<group>"; };
 		BA91FC411A88F1BB009AD890 /* VBDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBDefines.h; sourceTree = "<group>"; };
+		BA91FC4D1A88F487009AD890 /* AGURLSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGURLSession.h; sourceTree = "<group>"; };
+		BA91FC4E1A88F487009AD890 /* AGURLSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGURLSession.m; sourceTree = "<group>"; };
+		BA91FC511A88F487009AD890 /* VBDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBDefines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,7 @@
 		BA91FC3F1A88F1BB009AD890 /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA91FC4C1A88F487009AD890 /* AGURLSession */,
 				BA91FC401A88F1BB009AD890 /* VBDefines */,
 			);
 			path = frameworks;
@@ -156,6 +161,32 @@
 			isa = PBXGroup;
 			children = (
 				BA91FC411A88F1BB009AD890 /* VBDefines.h */,
+			);
+			path = VBDefines;
+			sourceTree = "<group>";
+		};
+		BA91FC4C1A88F487009AD890 /* AGURLSession */ = {
+			isa = PBXGroup;
+			children = (
+				BA91FC4D1A88F487009AD890 /* AGURLSession.h */,
+				BA91FC4E1A88F487009AD890 /* AGURLSession.m */,
+				BA91FC4F1A88F487009AD890 /* frameworks */,
+			);
+			path = AGURLSession;
+			sourceTree = "<group>";
+		};
+		BA91FC4F1A88F487009AD890 /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BA91FC501A88F487009AD890 /* VBDefines */,
+			);
+			path = frameworks;
+			sourceTree = "<group>";
+		};
+		BA91FC501A88F487009AD890 /* VBDefines */ = {
+			isa = PBXGroup;
+			children = (
+				BA91FC511A88F487009AD890 /* VBDefines.h */,
 			);
 			path = VBDefines;
 			sourceTree = "<group>";
@@ -264,6 +295,7 @@
 				BA91FC191A88EA57009AD890 /* ViewController.m in Sources */,
 				BA91FC161A88EA57009AD890 /* AppDelegate.m in Sources */,
 				BA91FC131A88EA57009AD890 /* main.m in Sources */,
+				BA91FC521A88F487009AD890 /* AGURLSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
