@@ -24,7 +24,15 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AGImageCacheDefines.h"
+
 @interface AGImageCacheManager : NSObject
 
++ (void) loadImageWithUrl:(NSString*)url
+              saveToCache:(BOOL)saveToCache
+                   sender:(id)sender
+               completion:(AGImageCacheCompletion)completion;
+
++ (void) cancelLoadingWithSender:(id)sender;
 
 @end
