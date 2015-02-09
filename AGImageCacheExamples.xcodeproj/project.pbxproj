@@ -14,6 +14,7 @@
 		BA91FC1E1A88EA57009AD890 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA91FC1D1A88EA57009AD890 /* Images.xcassets */; };
 		BA91FC211A88EA57009AD890 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA91FC1F1A88EA57009AD890 /* LaunchScreen.xib */; };
 		BA91FC2D1A88EA57009AD890 /* AGImageCacheExamplesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BA91FC2C1A88EA57009AD890 /* AGImageCacheExamplesTests.m */; };
+		BA91FC421A88F1BB009AD890 /* AGImageCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BA91FC3A1A88F1BB009AD890 /* AGImageCacheManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,10 @@
 		BA91FC261A88EA57009AD890 /* AGImageCacheExamplesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AGImageCacheExamplesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA91FC2B1A88EA57009AD890 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA91FC2C1A88EA57009AD890 /* AGImageCacheExamplesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGImageCacheExamplesTests.m; sourceTree = "<group>"; };
+		BA91FC371A88F075009AD890 /* AGImageCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGImageCache.h; sourceTree = "<group>"; };
+		BA91FC391A88F1BB009AD890 /* AGImageCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGImageCacheManager.h; sourceTree = "<group>"; };
+		BA91FC3A1A88F1BB009AD890 /* AGImageCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGImageCacheManager.m; sourceTree = "<group>"; };
+		BA91FC411A88F1BB009AD890 /* VBDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBDefines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +68,7 @@
 		BA91FC041A88EA57009AD890 = {
 			isa = PBXGroup;
 			children = (
+				BA91FC361A88EFC9009AD890 /* AGImageCache */,
 				BA91FC0F1A88EA57009AD890 /* AGImageCacheExamples */,
 				BA91FC291A88EA57009AD890 /* AGImageCacheExamplesTests */,
 				BA91FC0E1A88EA57009AD890 /* Products */,
@@ -117,6 +123,41 @@
 				BA91FC2B1A88EA57009AD890 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BA91FC361A88EFC9009AD890 /* AGImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				BA91FC371A88F075009AD890 /* AGImageCache.h */,
+				BA91FC381A88F1BB009AD890 /* AGImageCacheInner */,
+				BA91FC3F1A88F1BB009AD890 /* frameworks */,
+			);
+			path = AGImageCache;
+			sourceTree = "<group>";
+		};
+		BA91FC381A88F1BB009AD890 /* AGImageCacheInner */ = {
+			isa = PBXGroup;
+			children = (
+				BA91FC391A88F1BB009AD890 /* AGImageCacheManager.h */,
+				BA91FC3A1A88F1BB009AD890 /* AGImageCacheManager.m */,
+			);
+			path = AGImageCacheInner;
+			sourceTree = "<group>";
+		};
+		BA91FC3F1A88F1BB009AD890 /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BA91FC401A88F1BB009AD890 /* VBDefines */,
+			);
+			path = frameworks;
+			sourceTree = "<group>";
+		};
+		BA91FC401A88F1BB009AD890 /* VBDefines */ = {
+			isa = PBXGroup;
+			children = (
+				BA91FC411A88F1BB009AD890 /* VBDefines.h */,
+			);
+			path = VBDefines;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA91FC421A88F1BB009AD890 /* AGImageCacheManager.m in Sources */,
 				BA91FC191A88EA57009AD890 /* ViewController.m in Sources */,
 				BA91FC161A88EA57009AD890 /* AppDelegate.m in Sources */,
 				BA91FC131A88EA57009AD890 /* main.m in Sources */,
@@ -414,6 +456,7 @@
 				BA91FC321A88EA57009AD890 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BA91FC331A88EA57009AD890 /* Build configuration list for PBXNativeTarget "AGImageCacheExamplesTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +465,7 @@
 				BA91FC351A88EA57009AD890 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
