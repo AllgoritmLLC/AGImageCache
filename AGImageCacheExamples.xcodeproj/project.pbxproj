@@ -49,6 +49,7 @@
 		BA91FC4D1A88F487009AD890 /* AGURLSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGURLSession.h; sourceTree = "<group>"; };
 		BA91FC4E1A88F487009AD890 /* AGURLSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGURLSession.m; sourceTree = "<group>"; };
 		BA91FC511A88F487009AD890 /* VBDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBDefines.h; sourceTree = "<group>"; };
+		BA91FC531A88F50F009AD890 /* AGImageCacheDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGImageCacheDefines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +143,7 @@
 		BA91FC381A88F1BB009AD890 /* AGImageCacheInner */ = {
 			isa = PBXGroup;
 			children = (
+				BA91FC531A88F50F009AD890 /* AGImageCacheDefines.h */,
 				BA91FC391A88F1BB009AD890 /* AGImageCacheManager.h */,
 				BA91FC3A1A88F1BB009AD890 /* AGImageCacheManager.m */,
 			);

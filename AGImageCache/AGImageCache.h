@@ -25,12 +25,6 @@
 #ifndef AGImageCacheExamples_AGImageCache_h
 #define AGImageCacheExamples_AGImageCache_h
 
-#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
-typedef UIImage AGImage;
-#else
-typedef NSImage AGImage;
-#endif
-
-typedef void(^AGImageCacheCompletion)(AGImage* image, NSString* url, NSError* error);
+#import "AGImageCacheDefines.h"
 
 #endif
