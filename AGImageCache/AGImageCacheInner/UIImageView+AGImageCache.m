@@ -81,9 +81,10 @@
         __weak UIImageView* __self = self;
 
         [self cancelLoadingImages];
-        [UIImage imageWithUrlString:urlString
-                        forceReload:forceReload
-                         completion:^(UIImage *image, NSString *imageUrl, NSError *error) {
+        [AGImageCacheManager loadImageWithUrl:urlString
+                                  forceReload:forceReload
+                                       sender:self
+                                   completion:^(UIImage *image, NSString *imageUrl, NSError *error) {
                             if (!__self) return;
                             
                             if (!error && image && [imageUrl isEqualToString:urlString]) {
