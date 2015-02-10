@@ -44,7 +44,7 @@ static NSInteger AGImageCacheMaxFileAge = 60;
 @interface AGImageCacheManager ()
 
 @property (nonatomic, strong) AGURLSession* session;
-@property (nonatomic, strong) NSMutableDictionary* tasksBySender;
+@property (nonatomic, strong) NSMutableArray* tasks;
 
 @property (nonatomic, strong) dispatch_queue_t queueCleanup;
 
@@ -64,7 +64,7 @@ static NSInteger AGImageCacheMaxFileAge = 60;
     self = [super init];
     if (self) {
         self.session = [AGURLSession new];
-        self.tasksBySender = [NSMutableDictionary new];
+        self.tasks = [NSMutableArray new];
         self.queueCleanup = dispatch_queue_create("AGImageCacheManagerQueue", DISPATCH_QUEUE_SERIAL);
     }
     return self;
@@ -109,9 +109,15 @@ static NSInteger AGImageCacheMaxFileAge = 60;
                                                                 AGImageCacheManagerLog(@"DID FAIL to load image \nurl: %@\nerror: %@", url, networkError);
                                                             }
                                                             [__self removeCompletedTasks];
+
+                                                            if (completion) {
+                                                                completion(image, url.absoluteString, networkError);
+                                                            }
                                                         }];
-            [self cancelLoadingWithSender:sender];
-            self.tasksBySender[sender] = task;
+            if (sender) {
+                [self cancelLoadingWithSender:sender];
+                [self.tasks addObject:@[task, sender]];
+            }
             [self.session loadTask:task];
         } else {
             AGImageCacheManagerLog(@"DID FOUND image\nurl: %@", url);
@@ -128,19 +134,29 @@ static NSInteger AGImageCacheMaxFileAge = 60;
     [[self sharedInstance] cancelLoadingWithSender:sender];
 }
 - (void) cancelLoadingWithSender:(id)sender {
-    if (self.tasksBySender[sender]) {
-        NSURLSessionTask* taskPrev = self.tasksBySender[sender];
+    NSArray* tasksEntry = [[self.tasks objectsAtIndexes:
+                           [self.tasks indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        return obj[1] == sender;
+    }]] lastObject];
+    
+    if (tasksEntry) {
+        NSURLSessionTask* taskPrev = tasksEntry[0];
         if (taskPrev.state != NSURLSessionTaskStateCompleted) {
             [self.session cancelTask:taskPrev];
+            [self.tasks removeObject:tasksEntry];
         }
     }
 }
 
 - (void) removeCompletedTasks {
-    for (NSURLSessionTask* task in self.tasksBySender.allValues) {
-        if (task.state == NSURLSessionTaskStateSuspended || task.state == NSURLSessionTaskStateCompleted) {
-            [self.session cancelTask:task];
-        }
+    NSArray* tasksCompleted = [self.tasks objectsAtIndexes:
+                               [self.tasks indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        NSURLSessionTask* tmpTask = (NSURLSessionTask*)obj[0];
+        return tmpTask.state == NSURLSessionTaskStateSuspended || tmpTask.state == NSURLSessionTaskStateCompleted;
+    }]];
+    for (NSArray* tasksEntry in tasksCompleted) {
+        [self.session cancelTask:tasksEntry[0]];
+        [self.tasks removeObject:tasksEntry];
     }
 }
 
