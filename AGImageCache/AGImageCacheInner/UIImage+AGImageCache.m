@@ -41,7 +41,7 @@
     
     [AGImageCacheManager loadImageWithUrl:urlString
                               forceReload:forceReload
-                                   sender:self
+                                   sender:nil
                                completion:completion];
 }
 
