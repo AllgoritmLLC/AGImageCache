@@ -8,7 +8,12 @@
 
 #import "ViewController.h"
 
+#import "AGImageCache.h"
+
 @interface ViewController ()
+
+@property (nonatomic, strong) IBOutlet UIImageView* iv1;
+@property (nonatomic, strong) IBOutlet UIImageView* iv2;
 
 @end
 
@@ -17,6 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    [self.iv1 setImageWithUrlString:@"http://img.drive.ru/i/0/54d889fe95a6568b3d000003.jpg"];
+    [self.iv2 setImageWithUrlString:@"http://img.drive.ru/i/0/54d885fa95a656de3300000a.jpg" placeholder:nil forceReload:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
