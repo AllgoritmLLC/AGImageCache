@@ -29,7 +29,7 @@
 #import "AGURLSession.h"
 #import "VBDefines.h"
 
-#if defined(DEBUG) && 0
+#if defined(DEBUG) && 1
 #define AGImageCacheManagerLog(format, ...) VBLog(format, ## __VA_ARGS__)
 #else
 #define AGImageCacheManagerLog(format, ...)
@@ -38,6 +38,8 @@
 @interface AGImageCacheManager ()
 
 @property (nonatomic, strong) AGURLSession* session;
+
+@property (nonatomic, strong) NSMutableDictionary* tasksBySender;
 
 @end
 
@@ -55,6 +57,7 @@
     self = [super init];
     if (self) {
         self.session = [AGURLSession new];
+        self.tasksBySender = [NSMutableDictionary new];
     }
     return self;
 }
@@ -64,6 +67,8 @@
               saveToCache:(BOOL)saveToCache
                    sender:(id)sender
                completion:(AGImageCacheCompletion)completion {
+    
+    
     [[self sharedInstance] loadImageWithUrl:[NSURL URLWithString:url]
                                 saveToCache:saveToCache
                                      sender:sender
@@ -80,24 +85,29 @@
         AGImage* image = [[AGImage alloc] initWithContentsOfFile:cachePath];
 
         if (nil == image) {
-            [self.session loadDataWithURL:url
-                               completion:^(NSData *data, NSError *networkError) {
-                                   AGImage* image = nil;
-                                   if (networkError == nil && data) {
-                                            image = [[AGImage alloc] initWithData:data];
-                                           if (image) {
-                                               AGImageCacheManagerLog(@"DID LOAD image\nurl: %@", url);
-                                               if (saveToCache) {
-                                                   [data writeToFile:cachePath
-                                                          atomically:YES];
-                                               }
-                                           }else{
-                                               AGImageCacheManagerLog(@"DID FAIL to read loaded image\nurl: %@", url);
-                                           }
-                                       }else{
-                                           AGImageCacheManagerLog(@"DID FAIL to load image \nurl: %@\nerror: %@", url, error);
-                                       }
-                               }];
+            __weak typeof(self) __self = self;
+            NSURLSessionTask* task = [self.session dataTaskWithURL:url
+                                                        completion:^(NSData *data, NSError *networkError) {
+                                                            AGImage* image = nil;
+                                                            if (networkError == nil && data) {
+                                                                image = [[AGImage alloc] initWithData:data];
+                                                                if (image) {
+                                                                    AGImageCacheManagerLog(@"DID LOAD image\nurl: %@", url);
+                                                                    if (saveToCache) {
+                                                                        [data writeToFile:cachePath
+                                                                               atomically:YES];
+                                                                    }
+                                                                }else{
+                                                                    AGImageCacheManagerLog(@"DID FAIL to read loaded image\nurl: %@", url);
+                                                                }
+                                                            }else{
+                                                                AGImageCacheManagerLog(@"DID FAIL to load image \nurl: %@\nerror: %@", url, networkError);
+                                                            }
+                                                            [__self removeCompletedTasks];
+                                                        }];
+            [self cancelLoadingWithSender:sender];
+            self.tasksBySender[sender] = task;
+            [self.session loadTask:task];
         } else {
             AGImageCacheManagerLog(@"DID FOUND image\nurl: %@", url);
             if (completion) {
@@ -110,7 +120,23 @@
 }
 
 + (void) cancelLoadingWithSender:(id)sender {
-    
+    [[self sharedInstance] cancelLoadingWithSender:sender];
+}
+- (void) cancelLoadingWithSender:(id)sender {
+    if (self.tasksBySender[sender]) {
+        NSURLSessionTask* taskPrev = self.tasksBySender[sender];
+        if (taskPrev.state != NSURLSessionTaskStateCompleted) {
+            [self.session cancelTask:taskPrev];
+        }
+    }
+}
+
+- (void) removeCompletedTasks {
+    for (NSURLSessionTask* task in self.tasksBySender.allValues) {
+        if (task.state == NSURLSessionTaskStateSuspended || task.state == NSURLSessionTaskStateCompleted) {
+            [self.session cancelTask:task];
+        }
+    }
 }
 
 #pragma mark - path
