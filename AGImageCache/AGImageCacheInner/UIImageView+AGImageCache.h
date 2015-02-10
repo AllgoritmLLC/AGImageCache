@@ -28,6 +28,26 @@
 
 @interface UIImageView (AGImageCache)
 
+- (void) setImageWithUrlString:(NSString*) urlString;
 
+- (void) setImageWithUrlString:(NSString*) urlString
+               placeholderName:(NSString*) placeholderName;
+
+- (void) setImageWithUrlString:(NSString*) urlString
+                   placeholder:(UIImage*) placeholder;
+
+- (void) setImageWithUrlString:(NSString*) urlString
+               placeholderName:(NSString*) placeholderName
+                    completion:(AGImageCacheCompletion)completion;
+
+- (void) setImageWithUrlString:(NSString*) urlString
+                   placeholder:(UIImage*) placeholder
+                    completion:(AGImageCacheCompletion)completion;
+
+#pragma mark - full
+- (void) setImageWithUrlString:(NSString*) urlString
+                   placeholder:(UIImage*) placeholder
+                   forceReload:(BOOL) forceReload
+                    completion:(AGImageCacheCompletion)completion;
 
 @end
