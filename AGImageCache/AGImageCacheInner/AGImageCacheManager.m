@@ -64,19 +64,19 @@
 
 #pragma mark - load
 + (void) loadImageWithUrl:(NSString*)url
-              saveToCache:(BOOL)saveToCache
+                 useCache:(BOOL)useCache
                    sender:(id)sender
                completion:(AGImageCacheCompletion)completion {
     
     
     [[self sharedInstance] loadImageWithUrl:[NSURL URLWithString:url]
-                                saveToCache:saveToCache
+                                   useCache:useCache
                                      sender:sender
                                  completion:completion];
 }
 
 - (void) loadImageWithUrl:(NSURL*) url
-              saveToCache:(BOOL) saveToCache
+                 useCache:(BOOL) useCache
                    sender:(id) sender
                completion:(AGImageCacheCompletion) completion{
     
@@ -84,7 +84,7 @@
         NSString* cachePath = [self cachePathWithUrl:url];
         AGImage* image = [[AGImage alloc] initWithContentsOfFile:cachePath];
 
-        if (nil == image) {
+        if (nil == image || useCache == NO) {
             __weak typeof(self) __self = self;
             NSURLSessionTask* task = [self.session dataTaskWithURL:url
                                                         completion:^(NSData *data, NSError *networkError) {
@@ -93,7 +93,7 @@
                                                                 image = [[AGImage alloc] initWithData:data];
                                                                 if (image) {
                                                                     AGImageCacheManagerLog(@"DID LOAD image\nurl: %@", url);
-                                                                    if (saveToCache) {
+                                                                    if (useCache) {
                                                                         [data writeToFile:cachePath
                                                                                atomically:YES];
                                                                     }

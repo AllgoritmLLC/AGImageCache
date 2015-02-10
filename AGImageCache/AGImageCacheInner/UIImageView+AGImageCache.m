@@ -61,13 +61,14 @@
                     completion:(AGImageCacheCompletion)completion {
     [self setImageWithUrlString:urlString
                     placeholder:placeholder
+                       useCache:YES
                      completion:completion];
 }
 
 #pragma mark - full
 - (void) setImageWithUrlString:(NSString*) urlString
                    placeholder:(UIImage*) placeholder
-                   saveToCache:(BOOL) saveToCache
+                      useCache:(BOOL) useCache
                     completion:(AGImageCacheCompletion)completion {
     
     if (placeholder) {
@@ -78,7 +79,7 @@
         __weak UIImageView* __self = self;
         [AGImageCacheManager cancelLoadingWithSender:self];
         [AGImageCacheManager loadImageWithUrl:urlString
-                                  saveToCache:saveToCache
+                                     useCache:useCache
                                        sender:self
                                    completion:^(UIImage *image, NSString *imageUrl, NSError *error) {
                                          if (!__self) return;

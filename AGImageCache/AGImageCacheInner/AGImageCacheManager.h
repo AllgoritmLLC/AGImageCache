@@ -29,7 +29,7 @@
 @interface AGImageCacheManager : NSObject
 
 + (void) loadImageWithUrl:(NSString*)url
-              saveToCache:(BOOL)saveToCache
+                 useCache:(BOOL)useCache
                    sender:(id)sender
                completion:(AGImageCacheCompletion)completion;
 
