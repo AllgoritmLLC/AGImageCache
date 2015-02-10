@@ -22,16 +22,12 @@
 //    SOFTWARE.
 //
 
-#ifndef AGImageCache_AGImageCacheDefines_h
-#define AGImageCache_AGImageCacheDefines_h
+#import <UIKit/UIKit.h>
 
-#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
-#import <UIKit/UIImage.h>
-typedef UIImage AGImage;
-#else
-typedef NSImage AGImage;
-#endif
+#import "AGImageCacheDefines.h"
 
-typedef void(^AGImageCacheCompletion)(AGImage* image, NSString* imageUrl, NSError* error);
+@interface UIImageView (AGImageCache)
 
-#endif
+
+
+@end
