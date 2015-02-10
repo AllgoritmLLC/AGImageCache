@@ -65,26 +65,44 @@
     return self.session.configuration;
 }
 
-#pragma mark - load json task
-- (NSURLSessionTask*) loadJSONWithURLString:(NSString*)urlString
+#pragma mark - json task
+- (void) loadJSONWithURLString:(NSString*)urlString
+                    completion:(AGURLSessionJSONCompletion)completion  {
+    [self loadTask:[self jsonTaskWithURLString:urlString
+                                    completion:completion]];
+}
+
+- (void) loadJSONWithURL:(NSURL*)url
+              completion:(AGURLSessionJSONCompletion)completion {
+    [self loadTask:[self jsonTaskWithURL:url
+                              completion:completion]];
+}
+
+- (void) loadJSONWithURLRequest:(NSURLRequest*)request
+                                  completion:(AGURLSessionJSONCompletion)completion {
+    [self loadTask:[self jsonTaskWithURLRequest:request
+                                     completion:completion]];
+}
+
+- (NSURLSessionTask*) jsonTaskWithURLString:(NSString*)urlString
                                  completion:(AGURLSessionJSONCompletion)completion  {
     
-    return [self loadJSONWithURL:[NSURL URLWithString:urlString]
+    return [self jsonTaskWithURL:[NSURL URLWithString:urlString]
                       completion:completion];
 }
 
-- (NSURLSessionTask*) loadJSONWithURL:(NSURL*)url
-              completion:(AGURLSessionJSONCompletion)completion {
+- (NSURLSessionTask*) jsonTaskWithURL:(NSURL*)url
+                           completion:(AGURLSessionJSONCompletion)completion {
     
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
-    return [self loadJSONWithURLRequest:request
-                           completion:completion];
+    return [self jsonTaskWithURLRequest:request
+                             completion:completion];
 }
 
-- (NSURLSessionTask*) loadJSONWithURLRequest:(NSURLRequest*)request
+- (NSURLSessionTask*) jsonTaskWithURLRequest:(NSURLRequest*)request
                      completion:(AGURLSessionJSONCompletion)completion {
     __weak typeof(self) __self = self;
-    return [self loadDataWithURLRequest:request
+    return [self dataTaskWithURLRequest:request
                              completion:^(NSData *data, NSError *error) {
                                  dispatch_async(__self.queueCompletion, ^{
                                      id json = nil;
@@ -109,24 +127,42 @@
                              }];
 }
 
-#pragma mark - load data task
-- (NSURLSessionTask*) loadDataWithURLString:(NSString*)urlString
-                                 completion:(AGURLSessionDataCompletion)completion {
+#pragma mark - data task
+- (void) loadDataWithURLString:(NSString*)urlString
+                    completion:(AGURLSessionDataCompletion)completion {
     
-    return [self loadDataWithURL:[NSURL URLWithString:urlString]
-                     completion:completion];
+    [self loadTask:[self dataTaskWithURLString:urlString
+                                    completion:completion]];
+}
+- (void) loadDataWithURL:(NSURL*)url
+              completion:(AGURLSessionDataCompletion)completion {
+    [self loadTask:[self dataTaskWithURL:url
+                              completion:completion]];
+}
+- (void) loadDataWithURLRequest:(NSURLRequest*)request
+                     completion:(AGURLSessionDataCompletion)completion {
+    [self loadTask:[self dataTaskWithURLRequest:request
+                                     completion:completion]];
 }
 
-- (NSURLSessionTask*) loadDataWithURL:(NSURL*)url
-              completion:(AGURLSessionDataCompletion)completion {
+
+- (NSURLSessionTask*) dataTaskWithURLString:(NSString*)urlString
+                                 completion:(AGURLSessionDataCompletion)completion {
+    
+    return [self dataTaskWithURL:[NSURL URLWithString:urlString]
+                      completion:completion];
+}
+
+- (NSURLSessionTask*) dataTaskWithURL:(NSURL*)url
+                           completion:(AGURLSessionDataCompletion)completion {
     
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
-    return [self loadDataWithURLRequest:request
+    return [self dataTaskWithURLRequest:request
                              completion:completion];
 }
 
-- (NSURLSessionTask*) loadDataWithURLRequest:(NSURLRequest*)request
-                     completion:(AGURLSessionDataCompletion)completion {
+- (NSURLSessionTask*) dataTaskWithURLRequest:(NSURLRequest*)request
+                                  completion:(AGURLSessionDataCompletion)completion {
     
     __weak typeof(self) __self = self;
     NSURLSessionDataTask* task = [self.session dataTaskWithRequest:request
@@ -145,9 +181,16 @@
                                                          });
                                                      });
                                                  }];
-    [task resume];
-    
     return task;
+}
+
+#pragma mark - task
+- (void) loadTask:(NSURLSessionTask*)task {
+    [task resume];
+}
+
+- (void) cancelTask:(NSURLSessionTask*)task {
+    [task cancel];
 }
 
 #pragma mark - url builder
