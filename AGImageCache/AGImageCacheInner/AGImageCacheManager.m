@@ -37,8 +37,8 @@
 
 #define AGImageCacheManagerCleanupInterval  10 * 1
 
-static NSInteger AGImageCacheMaxBytes = 1024 * 2;
-static NSInteger AGImageCacheMaxFileAge = 60 * 60 * 24;
+NSInteger AGImageCacheMaxBytes = 1024 * 1024 * 10;
+NSInteger AGImageCacheMaxFileAge = 60 * 60 * 24;
 
 @interface AGImageCacheManager ()
 

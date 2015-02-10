@@ -26,6 +26,9 @@
 
 #import "AGImageCacheDefines.h"
 
+//extern NSInteger AGImageCacheMaxBytes;
+//extern NSInteger AGImageCacheMaxFileAge;
+
 @interface AGImageCacheManager : NSObject
 
 + (void) loadImageWithUrl:(NSString*)url

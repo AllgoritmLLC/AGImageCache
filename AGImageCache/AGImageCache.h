@@ -34,4 +34,7 @@
 //typedef NSImage AGImage;
 #endif
 
+extern NSInteger AGImageCacheMaxBytes;
+extern NSInteger AGImageCacheMaxFileAge;
+
 #endif
