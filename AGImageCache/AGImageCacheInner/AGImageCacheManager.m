@@ -35,11 +35,18 @@
 #define AGImageCacheManagerLog(format, ...)
 #endif
 
+#define AGImageCacheManagerCleanupInterval  60 * 1
+
+static NSInteger AGImageCacheMaxBytes = 1024 * 2;
+static NSInteger AGImageCacheMaxFileAge = 60;
+//static NSInteger AGImageCacheMaxFileAge = 60 * 60 * 24;
+
 @interface AGImageCacheManager ()
 
 @property (nonatomic, strong) AGURLSession* session;
-
 @property (nonatomic, strong) NSMutableDictionary* tasksBySender;
+
+@property (nonatomic, strong) dispatch_queue_t queueCleanup;
 
 @end
 
@@ -58,6 +65,7 @@
     if (self) {
         self.session = [AGURLSession new];
         self.tasksBySender = [NSMutableDictionary new];
+        self.queueCleanup = dispatch_queue_create("AGImageCacheManagerQueue", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }
@@ -135,6 +143,37 @@
         }
     }
 }
+
+//#pragma mark - cleanup
+//- (void) runCleanup {
+//    __weak typeof(self) __self = self;
+//    dispatch_async(self.queueCleanup, ^{
+//        while (YES) {
+//            [__self cleanupOldImages];
+//            sleep(AGImageCacheManagerCleanupInterval);
+//        }
+//    });
+//}
+//- (void) cleanupOldImages {
+//    NSFileManager* fm = [NSFileManager defaultManager];
+//    NSError* error = nil;
+//    NSArray* paths = [fm contentsOfDirectoryAtPath:[self cacheDirectory]
+//                                             error:&error];
+//    NSString* pathKey = @"path";
+//    NSMutableArray* files = [NSMutableArray new];
+//    for (NSString* path in files) {
+//        NSError* err = nil;
+//        NSDictionary* attrib = [fm attributesOfItemAtPath:path
+//                                                    error:&err];
+//        if (err) continue;
+//        if ([[NSDate date] timeIntervalSinceDate:attrib[NSFileCreationDate]] > AGImageCacheMaxFileAge) {
+//            [fm removeItemAtPath:path
+//                           error:nil];
+//        }else{
+//
+//        }
+//    }
+//}
 
 #pragma mark - path
 - (NSString*) cacheDirectory {
