@@ -67,6 +67,9 @@ typedef enum{
 - (NSURLSessionTask*) dataTaskWithURLRequest:(NSURLRequest*)request
                                   completion:(AGURLSessionDataCompletion)completion;
 
+#pragma mark - task
+- (void) loadTask:(NSURLSessionTask*)task;
+- (void) cancelTask:(NSURLSessionTask*)task;
 
 #pragma mark - url builder
 - (NSString*) urlStringWithSchema:(AGURLSchema)schema
