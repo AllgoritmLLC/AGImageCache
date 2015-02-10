@@ -80,7 +80,7 @@
     if (urlString != nil) {
         __weak UIImageView* __self = self;
 
-        [AGImageCacheManager cancelLoadingWithSender:self];
+        [self cancelLoadingImages];
         [UIImage imageWithUrlString:urlString
                         forceReload:forceReload
                          completion:^(UIImage *image, NSString *imageUrl, NSError *error) {
