@@ -22,17 +22,27 @@
 //    SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "UIImage+AGImageCache.h"
 
-#import "AGImageCacheDefines.h"
+#import "AGImageCacheManager.h"
 
-@interface AGImageCacheManager : NSObject
+@implementation UIImage (AGImageCache)
 
-+ (void) loadImageWithUrl:(NSString*)url
-              forceReload:(BOOL)forceReload
-                   sender:(id)sender
-               completion:(AGImageCacheCompletion)completion;
++ (void) imageWithUrlString:(NSString*) urlString
+                 completion:(AGImageCacheCompletion)completion {
+    [self imageWithUrlString:urlString
+                 forceReload:NO
+                  completion:completion];
+}
 
-+ (void) cancelLoadingWithSender:(id)sender;
++ (void) imageWithUrlString:(NSString*) urlString
+                forceReload:(BOOL)forceReload
+                 completion:(AGImageCacheCompletion) completion {
+    
+    [AGImageCacheManager loadImageWithUrl:urlString
+                              forceReload:forceReload
+                                   sender:self
+                               completion:completion];
+}
 
 @end

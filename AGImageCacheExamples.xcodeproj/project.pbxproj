@@ -17,6 +17,7 @@
 		BA91FC421A88F1BB009AD890 /* AGImageCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BA91FC3A1A88F1BB009AD890 /* AGImageCacheManager.m */; };
 		BA91FC521A88F487009AD890 /* AGURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = BA91FC4E1A88F487009AD890 /* AGURLSession.m */; };
 		BAB71A171A8A062D00979848 /* UIImageView+AGImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB71A161A8A062D00979848 /* UIImageView+AGImageCache.m */; };
+		BAB71A1A1A8A21E100979848 /* UIImage+AGImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB71A191A8A21E100979848 /* UIImage+AGImageCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		BA91FC531A88F50F009AD890 /* AGImageCacheDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGImageCacheDefines.h; sourceTree = "<group>"; };
 		BAB71A151A8A062D00979848 /* UIImageView+AGImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AGImageCache.h"; sourceTree = "<group>"; };
 		BAB71A161A8A062D00979848 /* UIImageView+AGImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AGImageCache.m"; sourceTree = "<group>"; };
+		BAB71A181A8A21E100979848 /* UIImage+AGImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AGImageCache.h"; sourceTree = "<group>"; };
+		BAB71A191A8A21E100979848 /* UIImage+AGImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AGImageCache.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +154,8 @@
 				BA91FC3A1A88F1BB009AD890 /* AGImageCacheManager.m */,
 				BAB71A151A8A062D00979848 /* UIImageView+AGImageCache.h */,
 				BAB71A161A8A062D00979848 /* UIImageView+AGImageCache.m */,
+				BAB71A181A8A21E100979848 /* UIImage+AGImageCache.h */,
+				BAB71A191A8A21E100979848 /* UIImage+AGImageCache.m */,
 			);
 			path = AGImageCacheInner;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA91FC421A88F1BB009AD890 /* AGImageCacheManager.m in Sources */,
+				BAB71A1A1A8A21E100979848 /* UIImage+AGImageCache.m in Sources */,
 				BAB71A171A8A062D00979848 /* UIImageView+AGImageCache.m in Sources */,
 				BA91FC191A88EA57009AD890 /* ViewController.m in Sources */,
 				BA91FC161A88EA57009AD890 /* AppDelegate.m in Sources */,

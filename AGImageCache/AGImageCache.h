@@ -29,6 +29,7 @@
 
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
 #import "UIImageView+AGImageCache.h"
+#import "UIImage+AGImageCache.h"
 #else
 //typedef NSImage AGImage;
 #endif

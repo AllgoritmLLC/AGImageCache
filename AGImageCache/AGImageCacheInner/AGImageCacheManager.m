@@ -63,28 +63,27 @@
 }
 
 #pragma mark - load
-+ (void) loadImageWithUrl:(NSString*)url
-                 useCache:(BOOL)useCache
-                   sender:(id)sender
-               completion:(AGImageCacheCompletion)completion {
-    
++ (void) loadImageWithUrl:(NSString*) url
+              forceReload:(BOOL) forceReload
+                   sender:(id) sender
+               completion:(AGImageCacheCompletion) completion {
     
     [[self sharedInstance] loadImageWithUrl:[NSURL URLWithString:url]
-                                   useCache:useCache
+                                forceReload:forceReload
                                      sender:sender
                                  completion:completion];
 }
 
 - (void) loadImageWithUrl:(NSURL*) url
-                 useCache:(BOOL) useCache
+              forceReload:(BOOL) forceReload
                    sender:(id) sender
-               completion:(AGImageCacheCompletion) completion{
+               completion:(AGImageCacheCompletion) completion {
     
     @synchronized(self){
         NSString* cachePath = [self cachePathWithUrl:url];
         AGImage* image = [[AGImage alloc] initWithContentsOfFile:cachePath];
 
-        if (nil == image || useCache == NO) {
+        if (nil == image || forceReload) {
             __weak typeof(self) __self = self;
             NSURLSessionTask* task = [self.session dataTaskWithURL:url
                                                         completion:^(NSData *data, NSError *networkError) {
@@ -93,10 +92,8 @@
                                                                 image = [[AGImage alloc] initWithData:data];
                                                                 if (image) {
                                                                     AGImageCacheManagerLog(@"DID LOAD image\nurl: %@", url);
-                                                                    if (useCache) {
-                                                                        [data writeToFile:cachePath
-                                                                               atomically:YES];
-                                                                    }
+                                                                    [data writeToFile:cachePath
+                                                                           atomically:YES];
                                                                 }else{
                                                                     AGImageCacheManagerLog(@"DID FAIL to read loaded image\nurl: %@", url);
                                                                 }

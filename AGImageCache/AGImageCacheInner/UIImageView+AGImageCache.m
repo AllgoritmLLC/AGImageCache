@@ -27,6 +27,8 @@
 #import "AGImageCacheDefines.h"
 #import "AGImageCacheManager.h"
 
+#import "UIImage+AGImageCache.h"
+
 @implementation UIImageView (AGImageCache)
 
 - (void) setImageWithUrlString:(NSString*) urlString {
@@ -61,14 +63,14 @@
                     completion:(AGImageCacheCompletion)completion {
     [self setImageWithUrlString:urlString
                     placeholder:placeholder
-                       useCache:YES
+                    forceReload:NO
                      completion:completion];
 }
 
 #pragma mark - full
 - (void) setImageWithUrlString:(NSString*) urlString
                    placeholder:(UIImage*) placeholder
-                      useCache:(BOOL) useCache
+                   forceReload:(BOOL) forceReload
                     completion:(AGImageCacheCompletion)completion {
     
     if (placeholder) {
@@ -77,20 +79,20 @@
     
     if (urlString != nil) {
         __weak UIImageView* __self = self;
+
         [AGImageCacheManager cancelLoadingWithSender:self];
-        [AGImageCacheManager loadImageWithUrl:urlString
-                                     useCache:useCache
-                                       sender:self
-                                   completion:^(UIImage *image, NSString *imageUrl, NSError *error) {
-                                         if (!__self) return;
-                                         
-                                         if (!error && image && [imageUrl isEqualToString:urlString]) {
-                                             __self.image = image;
-                                         }
-                                         if (completion) {
-                                             completion(image, imageUrl, error);
-                                         }
-                                   }];
+        [UIImage imageWithUrlString:urlString
+                        forceReload:forceReload
+                         completion:^(UIImage *image, NSString *imageUrl, NSError *error) {
+                            if (!__self) return;
+                            
+                            if (!error && image && [imageUrl isEqualToString:urlString]) {
+                                __self.image = image;
+                            }
+                            if (completion) {
+                                completion(image, imageUrl, error);
+                            }
+                        }];
     }
 }
 
