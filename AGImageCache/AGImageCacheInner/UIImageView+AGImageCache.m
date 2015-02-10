@@ -87,7 +87,7 @@
                                    completion:^(UIImage *image, NSString *imageUrl, NSError *error) {
                             if (!__self) return;
                             
-                            if (!error && image && [imageUrl isEqualToString:urlString]) {
+                            if (!error && image) {
                                 __self.image = image;
                             }
                             if (completion) {
