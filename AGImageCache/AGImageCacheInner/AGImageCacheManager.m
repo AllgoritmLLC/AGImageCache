@@ -29,6 +29,8 @@
 #import "AGURLSession.h"
 #import "VBDefines.h"
 
+#import <UIKit/UIScreen.h>
+
 #if defined(DEBUG) && 1
 #define AGImageCacheManagerLog(format, ...) VBLog(format, ## __VA_ARGS__)
 #else
@@ -39,6 +41,7 @@
 
 NSInteger AGImageCacheMaxBytes = 1024 * 1024 * 10;
 NSInteger AGImageCacheMaxFileAge = 60 * 60 * 24;
+BOOL AGImageCacheScaleWithScreenFactor = YES;
 
 @interface AGImageCacheManager ()
 
@@ -99,6 +102,13 @@ NSInteger AGImageCacheMaxFileAge = 60 * 60 * 24;
                                                             AGImage* image = nil;
                                                             if (networkError == nil && data) {
                                                                 image = [[AGImage alloc] initWithData:data];
+                                                                
+                                                                if (AGImageCacheScaleWithScreenFactor) {
+                                                                    image = [UIImage imageWithCGImage:image.CGImage
+                                                                                                scale:[UIScreen mainScreen].scale
+                                                                                          orientation:image.imageOrientation];
+                                                                }
+                                                                
                                                                 if (image) {
                                                                     AGImageCacheManagerLog(@"DID LOAD image\nurl: %@", url);
                                                                     [data writeToFile:cachePath
