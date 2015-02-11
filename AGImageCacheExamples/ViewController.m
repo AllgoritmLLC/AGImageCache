@@ -15,6 +15,8 @@
 @property (nonatomic, strong) IBOutlet UIImageView* iv1;
 @property (nonatomic, strong) IBOutlet UIImageView* iv2;
 
+@property (nonatomic, strong) IBOutlet UIButton* bn;
+
 @end
 
 @implementation ViewController
@@ -32,6 +34,9 @@
     
     [self.iv1 setImageWithUrlString:path placeholder:nil forceReload:YES useScreenScale:YES completion:nil];
     [self.iv2 setImageWithUrlString:path placeholder:nil forceReload:YES useScreenScale:NO completion:nil];
+    
+    [self.bn setImageWithUrlString:path
+                          forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {

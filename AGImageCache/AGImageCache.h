@@ -28,6 +28,7 @@
 #import "AGImageCacheDefines.h"
 
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
+#import "UIButton+AGImageCache.h"
 #import "UIImageView+AGImageCache.h"
 #import "UIImage+AGImageCache.h"
 #else

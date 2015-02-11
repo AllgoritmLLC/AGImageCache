@@ -31,16 +31,29 @@
                                     <constraint firstAttribute="height" constant="200" id="PMl-wi-N5I"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ys-sj-SOe">
+                                <rect key="frame" x="29" y="407" width="168" height="151"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="c6e-SF-WnI"/>
+                                    <constraint firstAttribute="height" constant="200" id="dQw-1J-ygJ"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="5ys-sj-SOe" firstAttribute="top" secondItem="ArJ-eV-bwl" secondAttribute="bottom" id="7By-Fh-gDO"/>
                             <constraint firstItem="ArJ-eV-bwl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-3" id="Hzy-5I-hqP"/>
                             <constraint firstItem="ArJ-eV-bwl" firstAttribute="top" secondItem="1Jl-mU-9K7" secondAttribute="bottom" constant="8" id="NN6-9o-zg8"/>
                             <constraint firstItem="1Jl-mU-9K7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Z2B-Cw-dMg"/>
                             <constraint firstItem="1Jl-mU-9K7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="g4j-ON-gxU"/>
+                            <constraint firstItem="5ys-sj-SOe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="13" id="mC1-sM-Ci6"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bn" destination="5ys-sj-SOe" id="9dj-0c-FvK"/>
                         <outlet property="iv1" destination="1Jl-mU-9K7" id="F7q-LW-2HN"/>
                         <outlet property="iv2" destination="ArJ-eV-bwl" id="HFn-Z1-BNh"/>
                     </connections>
