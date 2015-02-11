@@ -48,6 +48,7 @@
 - (void) setImageWithUrlString:(NSString*) urlString
                    placeholder:(UIImage*) placeholder
                    forceReload:(BOOL) forceReload
+                useScreenScale:(BOOL) useScreenScale
                     completion:(AGImageCacheCompletion)completion;
 
 @end

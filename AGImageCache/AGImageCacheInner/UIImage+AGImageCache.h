@@ -33,6 +33,7 @@
 
 + (void) imageWithUrlString:(NSString*) urlString
                 forceReload:(BOOL)forceReload
+             useScreenScale:(BOOL) useScreenScale
                  completion:(AGImageCacheCompletion) completion;
 
 @end

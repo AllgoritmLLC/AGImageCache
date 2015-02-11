@@ -32,15 +32,18 @@
                  completion:(AGImageCacheCompletion)completion {
     [self imageWithUrlString:urlString
                  forceReload:NO
+              useScreenScale:AGImageCacheUseScreenScale
                   completion:completion];
 }
 
 + (void) imageWithUrlString:(NSString*) urlString
-                forceReload:(BOOL)forceReload
+                forceReload:(BOOL) forceReload
+             useScreenScale:(BOOL) useScreenScale
                  completion:(AGImageCacheCompletion) completion {
     
     [AGImageCacheManager loadImageWithUrl:urlString
                               forceReload:forceReload
+                           useScreenScale:(BOOL) useScreenScale
                                    sender:nil
                                completion:completion];
 }

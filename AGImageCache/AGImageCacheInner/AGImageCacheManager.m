@@ -41,7 +41,7 @@
 
 NSInteger AGImageCacheMaxBytes = 1024 * 1024 * 10;
 NSInteger AGImageCacheMaxFileAge = 60 * 60 * 24;
-BOOL AGImageCacheScaleWithScreenFactor = YES;
+BOOL AGImageCacheUseScreenScale = YES;
 
 @interface AGImageCacheManager ()
 
@@ -77,17 +77,20 @@ BOOL AGImageCacheScaleWithScreenFactor = YES;
 #pragma mark - load
 + (void) loadImageWithUrl:(NSString*) url
               forceReload:(BOOL) forceReload
+           useScreenScale:(BOOL) useScreenScale
                    sender:(id) sender
                completion:(AGImageCacheCompletion) completion {
     
     [[self sharedInstance] loadImageWithUrl:[NSURL URLWithString:url]
                                 forceReload:forceReload
+                             useScreenScale:useScreenScale
                                      sender:sender
                                  completion:completion];
 }
 
 - (void) loadImageWithUrl:(NSURL*) url
               forceReload:(BOOL) forceReload
+           useScreenScale:(BOOL) useScreenScale
                    sender:(id) sender
                completion:(AGImageCacheCompletion) completion {
     
@@ -103,7 +106,7 @@ BOOL AGImageCacheScaleWithScreenFactor = YES;
                                                             if (networkError == nil && data) {
                                                                 image = [[AGImage alloc] initWithData:data];
                                                                 
-                                                                if (AGImageCacheScaleWithScreenFactor) {
+                                                                if (useScreenScale) {
                                                                     image = [UIImage imageWithCGImage:image.CGImage
                                                                                                 scale:[UIScreen mainScreen].scale
                                                                                           orientation:image.imageOrientation];

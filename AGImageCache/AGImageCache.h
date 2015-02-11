@@ -36,6 +36,5 @@
 
 extern NSInteger AGImageCacheMaxBytes;
 extern NSInteger AGImageCacheMaxFileAge;
-extern BOOL AGImageCacheScaleWithScreenFactor;
 
 #endif

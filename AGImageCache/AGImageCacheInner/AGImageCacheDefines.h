@@ -34,4 +34,6 @@ typedef NSImage AGImage;
 
 typedef void(^AGImageCacheCompletion)(AGImage* image, NSString* imageUrl, NSError* error);
 
+extern BOOL AGImageCacheUseScreenScale;
+
 #endif

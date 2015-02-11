@@ -64,6 +64,7 @@
     [self setImageWithUrlString:urlString
                     placeholder:placeholder
                     forceReload:NO
+                 useScreenScale:AGImageCacheUseScreenScale
                      completion:completion];
 }
 
@@ -71,6 +72,7 @@
 - (void) setImageWithUrlString:(NSString*) urlString
                    placeholder:(UIImage*) placeholder
                    forceReload:(BOOL) forceReload
+                useScreenScale:(BOOL) useScreenScale
                     completion:(AGImageCacheCompletion)completion {
     
     if (placeholder) {
@@ -83,6 +85,7 @@
         [self cancelLoadingImages];
         [AGImageCacheManager loadImageWithUrl:urlString
                                   forceReload:forceReload
+                               useScreenScale:useScreenScale
                                        sender:self
                                    completion:^(UIImage *image, NSString *imageUrl, NSError *error) {
                                         if (!__self) return;
