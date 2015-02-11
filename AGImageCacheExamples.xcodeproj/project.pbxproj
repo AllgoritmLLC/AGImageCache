@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA3FF7EB1A8B6B640007694D /* UIButton+AGImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3FF7EA1A8B6B640007694D /* UIButton+AGImageCache.m */; };
 		BA91FC131A88EA57009AD890 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA91FC121A88EA57009AD890 /* main.m */; };
 		BA91FC161A88EA57009AD890 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA91FC151A88EA57009AD890 /* AppDelegate.m */; };
 		BA91FC191A88EA57009AD890 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA91FC181A88EA57009AD890 /* ViewController.m */; };
@@ -31,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA3FF7E91A8B6B640007694D /* UIButton+AGImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+AGImageCache.h"; sourceTree = "<group>"; };
+		BA3FF7EA1A8B6B640007694D /* UIButton+AGImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AGImageCache.m"; sourceTree = "<group>"; };
 		BA91FC0D1A88EA57009AD890 /* AGImageCacheExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGImageCacheExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA91FC111A88EA57009AD890 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA91FC121A88EA57009AD890 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -154,6 +157,8 @@
 				BA91FC3A1A88F1BB009AD890 /* AGImageCacheManager.m */,
 				BAB71A151A8A062D00979848 /* UIImageView+AGImageCache.h */,
 				BAB71A161A8A062D00979848 /* UIImageView+AGImageCache.m */,
+				BA3FF7E91A8B6B640007694D /* UIButton+AGImageCache.h */,
+				BA3FF7EA1A8B6B640007694D /* UIButton+AGImageCache.m */,
 				BAB71A181A8A21E100979848 /* UIImage+AGImageCache.h */,
 				BAB71A191A8A21E100979848 /* UIImage+AGImageCache.m */,
 			);
@@ -309,6 +314,7 @@
 				BA91FC191A88EA57009AD890 /* ViewController.m in Sources */,
 				BA91FC161A88EA57009AD890 /* AppDelegate.m in Sources */,
 				BA91FC131A88EA57009AD890 /* main.m in Sources */,
+				BA3FF7EB1A8B6B640007694D /* UIButton+AGImageCache.m in Sources */,
 				BA91FC521A88F487009AD890 /* AGURLSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

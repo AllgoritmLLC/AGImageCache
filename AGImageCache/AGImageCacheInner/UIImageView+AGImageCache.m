@@ -80,7 +80,7 @@
     }
     
     if (urlString != nil) {
-        __weak UIImageView* __self = self;
+        __weak typeof(self) __self = self;
 
         [self cancelLoadingImages];
         [AGImageCacheManager loadImageWithUrl:urlString
