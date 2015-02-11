@@ -25,8 +25,13 @@
     
     AGImageCacheMaxFileAge = 10;
     
-    [self.iv1 setImageWithUrlString:@"http://img.drive.ru/i/0/54d889fe95a6568b3d000003.jpg" placeholder:nil forceReload:NO completion:nil];
-    [self.iv2 setImageWithUrlString:@"http://img.drive.ru/i/0/54d885fa95a656de3300000a.jpg" placeholder:nil forceReload:YES completion:nil];
+    self.iv1.contentMode =
+    self.iv2.contentMode = UIViewContentModeCenter;
+    
+    NSString* path = @"http://buyingvalue.com/wp-content/uploads/2011/03/tony_the_tiger-lg-200x200.jpg";
+    
+    [self.iv1 setImageWithUrlString:path placeholder:nil forceReload:YES useScreenScale:YES completion:nil];
+    [self.iv2 setImageWithUrlString:path placeholder:nil forceReload:YES useScreenScale:NO completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

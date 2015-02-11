@@ -18,17 +18,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Jl-mU-9K7">
-                                <rect key="frame" x="16" y="20" width="160" height="132"/>
+                                <rect key="frame" x="16" y="20" width="200" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="132" id="ceC-pf-BwF"/>
-                                    <constraint firstAttribute="width" constant="160" id="whO-YW-JyK"/>
+                                    <constraint firstAttribute="height" constant="200" id="ceC-pf-BwF"/>
+                                    <constraint firstAttribute="width" constant="200" id="whO-YW-JyK"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ArJ-eV-bwl">
-                                <rect key="frame" x="13" y="160" width="166" height="132"/>
+                                <rect key="frame" x="13" y="228" width="200" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="166" id="4qS-dT-7ol"/>
-                                    <constraint firstAttribute="height" constant="132" id="PMl-wi-N5I"/>
+                                    <constraint firstAttribute="width" constant="200" id="4qS-dT-7ol"/>
+                                    <constraint firstAttribute="height" constant="200" id="PMl-wi-N5I"/>
                                 </constraints>
                             </imageView>
                         </subviews>
