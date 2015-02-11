@@ -85,15 +85,15 @@
                                   forceReload:forceReload
                                        sender:self
                                    completion:^(UIImage *image, NSString *imageUrl, NSError *error) {
-                            if (!__self) return;
-                            
-                            if (!error && image) {
-                                __self.image = image;
-                            }
-                            if (completion) {
-                                completion(image, imageUrl, error);
-                            }
-                        }];
+                                        if (!__self) return;
+                                        
+                                        if (!error && image) {
+                                            __self.image = image;
+                                        }
+                                        if (completion) {
+                                            completion(image, imageUrl, error);
+                                        }
+                                   }];
     }
 }
 
