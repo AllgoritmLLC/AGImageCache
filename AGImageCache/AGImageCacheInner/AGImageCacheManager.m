@@ -247,8 +247,24 @@ BOOL AGImageCacheUseScreenScale = YES;
 
 - (NSString*) cachePathWithUrl:(NSURL*)url {
     NSString* path = [self cacheDirectory];
-    path = [path stringByAppendingPathComponent:url.lastPathComponent];
+    NSString* urlAbsolute = url.absoluteString;
+    urlAbsolute = [self encodedString:urlAbsolute];
+    path = [path stringByAppendingPathComponent:urlAbsolute];
+    if (path.length >= FILENAME_MAX) {
+        path = [path substringFromIndex:path.length - FILENAME_MAX - 1];
+    }
     return path;
+}
+
+- (NSString*) encodedString:(NSString*)string {
+    NSString* encoded =
+    (NSString*) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
+                                                                          NULL, /* allocator */
+                                                                          (__bridge CFStringRef)string,
+                                                                          NULL, /* charactersToLeaveUnescaped */
+                                                                          (CFStringRef)@"!*'();:@&=+$,/?%#[]._",
+                                                                          kCFStringEncodingUTF8));
+    return encoded;
 }
 
 @end
