@@ -31,13 +31,13 @@
 
 #import <UIKit/UIScreen.h>
 
-#if defined(DEBUG) && 1
+#if defined(DEBUG) && 0
 #define AGImageCacheManagerLog(format, ...) VBLog(format, ## __VA_ARGS__)
 #else
 #define AGImageCacheManagerLog(format, ...)
 #endif
 
-#define AGImageCacheManagerCleanupInterval  10 * 1
+#define AGImageCacheManagerCleanupInterval  60 * 10
 
 NSInteger AGImageCacheMaxBytes = 1024 * 1024 * 10;
 NSInteger AGImageCacheMaxFileAge = 60 * 60 * 24;
